@@ -131,7 +131,7 @@ export function playIntro(gsap) {
     window.dispatchEvent(new Event('portfolio:intro-complete'));
   };
   const onRouteChange = () => {
-    if (/^#\\/(?:work\\/|project\\/)/.test(location.hash)) finish();
+    if (/^#\/(?:work\/|project\/)/.test(location.hash)) finish();
   };
   if (motion.matches) { finish(); return; }
   const begin = () => {
