@@ -1,9 +1,5 @@
 // Editable homepage for the static GitHub Pages export. React and GSAP are
 // supplied by the existing app bundle; no additional framework/CDN is loaded.
-// The compiled hosting bundle passes GSAP to playIntro. Reuse that instance for
-// the homepage's role loop instead of loading a second animation library.
-let animationEngine = null;
-
 export function renderHome({content, route}, {React, projectHref, copy, Image}) {
   const h = React.createElement;
   const ref = React.useRef(null);
@@ -19,50 +15,6 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
     window.addEventListener('portfolio:show-work', showWork);
     return () => { if (frame !== null) cancelAnimationFrame(frame); window.removeEventListener('portfolio:show-work', showWork); };
   }, [route]);
-  React.useEffect(() => {
-    const word = ref.current?.querySelector('.portfolio-hero-role-word');
-    const hero = ref.current?.querySelector('.portfolio-hero');
-    if (!word || !hero) return;
-    const phrases = ['A DESIGNER', 'AN ANIMATOR', 'A SOFTWARE DEVELOPER'];
-    let current = 0;
-    let cycle = null;
-    let observer = null;
-    let visible = true;
-    let onVisibility = null;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const startCycle = () => {
-      if (cycle || reducedMotion.matches || !animationEngine || !word.isConnected) return;
-      const gsap = animationEngine;
-      cycle = gsap.timeline({repeat:-1, repeatDelay:0.15});
-      cycle.to(word, {y:-16, opacity:0, duration:0.25, delay:2.1, ease:'power2.in'})
-        .call(() => {current=(current+1)%phrases.length; word.textContent=phrases[current];})
-        .fromTo(word, {y:16, opacity:0}, {y:0, opacity:1, duration:0.38, ease:'power3.out'});
-      onVisibility = () => {
-        if (!cycle) return;
-        (!document.hidden && visible) ? cycle.resume() : cycle.pause();
-      };
-      document.addEventListener('visibilitychange', onVisibility);
-      if ('IntersectionObserver' in window) {
-        observer = new IntersectionObserver(entries => {
-          visible = Boolean(entries[0]?.isIntersecting);
-          onVisibility?.();
-        }, {threshold:0.05});
-        observer.observe(hero);
-      }
-    };
-    if (document.documentElement.classList.contains('portfolio-intro-active')) {
-      window.addEventListener('portfolio:intro-complete', startCycle, {once:true});
-    } else {
-      startCycle();
-    }
-    return () => {
-      window.removeEventListener('portfolio:intro-complete', startCycle);
-      observer?.disconnect();
-      if (onVisibility) document.removeEventListener('visibilitychange', onVisibility);
-      cycle?.kill();
-      // The loop is scoped to this home component and dies when it unmounts.
-    };
-  }, []);
   const featuredIds = ['comit-capital', 'motion-animation', 'unique-accessories'];
   const featured = featuredIds.map(id => content.projects.find(p => p.id === id)).filter(Boolean);
   const remaining = content.projects.filter(p => !featuredIds.includes(p.id));
@@ -82,8 +34,10 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
         h('p', {className:'portfolio-hero-prelude'}, 'I AM'),
         h('h1', {id:'portfolio-title', className:'portfolio-hero-name', 'data-hero-name':true},
           h('span', null, 'ELTON'), h('span', null, 'YASINI')),
-        h('p', {className:'portfolio-hero-role', 'aria-label':'Designer, animator and software developer'},
-          h('span', {className:'portfolio-hero-role-word', 'aria-hidden':true}, 'A DESIGNER'))),
+        h('p', {className:'portfolio-hero-role'},
+          h('span', {className:'portfolio-role-item'}, 'A DESIGNER'),
+          h('span', {className:'portfolio-role-item'}, 'AN ANIMATOR'),
+          h('span', {className:'portfolio-role-item'}, 'A SOFTWARE DEVELOPER'))),
       h('div', {className:'portfolio-hero-bottom'},
         h('p', null, content.profile.intro),
         h('a', {href:'#/work', className:'portfolio-link'}, 'Explore my work'))),
@@ -105,7 +59,6 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
 }
 
 export function playIntro(gsap) {
-  animationEngine = gsap;
   const overlay = document.getElementById('portfolio-intro');
   if (!overlay || overlay.hidden) return;
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -150,7 +103,7 @@ export function playIntro(gsap) {
     const scale = end.width/start.width;
     const dx = end.left + end.width/2 - start.left - start.width/2;
     const dy = end.top + end.height/2 - start.top - start.height/2;
-    gsap.set([label,role,bottom], {opacity:0, y:20});
+    gsap.set([label,bottom], {opacity:0, y:20});
     gsap.set(name, {opacity:0});
     timeline = gsap.timeline({onComplete:finish});
     timeline.fromTo(floatingLetters, {yPercent:110, opacity:0},
@@ -161,7 +114,6 @@ export function playIntro(gsap) {
       .to(floatingName, {x:dx, y:dy, scale, color:'#101010',
         duration:1.05, ease:'power3.inOut', transformOrigin:'center center'}, 'handoff')
       .to(label, {opacity:1, y:0, duration:0.48, ease:'power3.out'}, 'handoff+=0.43')
-      .to(role, {opacity:1, y:0, duration:0.48, ease:'power3.out'}, 'handoff+=0.59')
       .to(bottom, {opacity:1, y:0, duration:0.52, ease:'power3.out'}, 'handoff+=0.75')
       .set(name, {opacity:1}, 'handoff+=0.98')
       .to(overlay, {opacity:0, duration:0.14}, 'handoff+=1.00');
