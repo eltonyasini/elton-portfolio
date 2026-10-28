@@ -1,0 +1,656 @@
+{
+  "format": 1,
+  "base": "/elton-portfolio/",
+  "projects": [
+    "unique-accessories",
+    "real-graphics",
+    "athletics-arena",
+    "working-mama",
+    "motion-animation",
+    "cartoon-network",
+    "rcg-markets",
+    "comit-capital",
+    "space-markets"
+  ],
+  "brandSlugs": [
+    "rcg-markets",
+    "comit-capital",
+    "space-markets"
+  ],
+  "files": [
+    {
+      "path": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "404.html",
+      "bytes": 766,
+      "sha256": "b421849bc329d7a9c2149f36fe4a424138aad7460fe73e0cf381b4af7cf35545"
+    },
+    {
+      "path": "assets/app-Dao03Kfd.js",
+      "bytes": 483072,
+      "sha256": "8104ccd36d8614597c3fe1573d35994537e753a1ef04802550cbca24f64f7f98"
+    },
+    {
+      "path": "assets/index-CgjP9zoy.css",
+      "bytes": 104792,
+      "sha256": "f874dc30c26b94f6febb797844d6d18317dee729a8cb1098ed35033faed94bc8"
+    },
+    {
+      "path": "content/brands.json",
+      "bytes": 163087,
+      "sha256": "65c382458b59bfebc0535fd0d72544cd25533d4a1ede3004d91647e290e3736f"
+    },
+    {
+      "path": "content/portfolio.json",
+      "bytes": 19048,
+      "sha256": "96fcd3b9a9897a8e308124ddac54b3d18ea426947661c0e4ac70936e802941af"
+    },
+    {
+      "path": "index.html",
+      "bytes": 766,
+      "sha256": "b421849bc329d7a9c2149f36fe4a424138aad7460fe73e0cf381b4af7cf35545"
+    },
+    {
+      "path": "media/animation-collaborations/manenberg-0817953af012-web-poster.jpg",
+      "bytes": 148374,
+      "sha256": "9d480bad6a7b876d9258b6d34f8ee65fd7463d5640aea5c7ae8ad7fa9e99943b"
+    },
+    {
+      "path": "media/animation-collaborations/manenberg-0817953af012-web.mp4",
+      "bytes": 32076810,
+      "sha256": "a44fff38dc506a1c7cd38ae623750c4ddf77ca729950b7dbbd3708e004aca3a1"
+    },
+    {
+      "path": "media/animation-collaborations/ravensmead-f47e76f36af7-web-poster.jpg",
+      "bytes": 57168,
+      "sha256": "cb9d56190ad805b0e342713e64b81531f75b2a18f41139fd65820f5fca91a246"
+    },
+    {
+      "path": "media/animation-collaborations/ravensmead-f47e76f36af7-web.mp4",
+      "bytes": 6923192,
+      "sha256": "53ed31748db18fceb35c57fb7dfd7f5185439267cbaea4616f3081f077c46606"
+    },
+    {
+      "path": "media/cartoon-network/episode-OJpVkN5HI4k-1920x1080.webp",
+      "bytes": 238106,
+      "sha256": "efe6f4ba05de997c560f8e7a22a26478bd9b0d21c8acc348c7f31fbe4a30b440"
+    },
+    {
+      "path": "media/cartoon-network/episode-QBfqT35aWe0-1920x1080.webp",
+      "bytes": 158754,
+      "sha256": "8315a9ddff46ae34a8d3c69791d5278f7c2a91f9d7cc6ae07ae0d2de2e0ccba2"
+    },
+    {
+      "path": "media/cartoon-network/episode-Xachc5xSw9g-1920x1080.webp",
+      "bytes": 192456,
+      "sha256": "9cbb5cf953eca94e0dafa1f67a45fe27a5b12236a83801a27becc82f17ff6583"
+    },
+    {
+      "path": "media/cartoon-network/episode-ytR1xEwqOFU-1920x1080.webp",
+      "bytes": 183772,
+      "sha256": "45204380132a61141b6e6e3ac7d0cc1726dfedff4b8b6fe99f1ee45021ad3590"
+    },
+    {
+      "path": "media/cn-vfx-cover-05ae3f16df12.png",
+      "bytes": 1749775,
+      "sha256": "05ae3f16df1224fd33f6498af5b459a2aa5a261c074acfec1e58d376875933ff"
+    },
+    {
+      "path": "media/cn-vfx-cover-064742b5b38c.png",
+      "bytes": 2115364,
+      "sha256": "064742b5b38ca6e1c6068c770a95989e722a3f5d97517a0abbcd30d8e8ce3add"
+    },
+    {
+      "path": "media/cn-vfx-cover-2300858cc802.png",
+      "bytes": 1856224,
+      "sha256": "2300858cc802fa0e4cbd8d59c69bba741009f4f5c8a6dc014bf9e2af6e8891b1"
+    },
+    {
+      "path": "media/cn-vfx-cover-9a7f6b4342c2.png",
+      "bytes": 1805904,
+      "sha256": "9a7f6b4342c23402b0af5e040109a637398396e369b06f71a0d5dc352e5d7e31"
+    },
+    {
+      "path": "media/comit-capital-account-rescue-ca053c42ea42-poster.jpg",
+      "bytes": 65923,
+      "sha256": "02bb150eab670a9da05737607419fa6e7d0d1bfb116e6d4bc457db2df418c138"
+    },
+    {
+      "path": "media/comit-capital-account-rescue-ca053c42ea42.mp4",
+      "bytes": 22967415,
+      "sha256": "2344d9b725ba1873e42759345c6e755c7e0617e6ed325be94af635de01dd9a06"
+    },
+    {
+      "path": "media/manual-cover-athletics-arena-e9723e4293e3.png",
+      "bytes": 1804184,
+      "sha256": "e9723e4293e3c5401cbfb9c4977ed367f4f621f05cd0bd47575103617c13aef5"
+    },
+    {
+      "path": "media/manual-cover-cartoon-network-7885af101079.png",
+      "bytes": 1574403,
+      "sha256": "7885af10107924f2c758f79386070979d228103305da1e67086b35a73f4c0175"
+    },
+    {
+      "path": "media/manual-cover-comit-capital-cdb9d7117bc9.png",
+      "bytes": 714231,
+      "sha256": "cdb9d7117bc98cae64b55b45b6cbf188d786705957a38f0ef65d190e4e4938cc"
+    },
+    {
+      "path": "media/manual-cover-motion-animation-e9c67f96d103.png",
+      "bytes": 510750,
+      "sha256": "e9c67f96d10373efe9e8eb54752f1239b7ec7cc17bc2324ec315e8a77011e490"
+    },
+    {
+      "path": "media/manual-cover-rcg-markets-fbf3d4b36848.png",
+      "bytes": 661037,
+      "sha256": "fbf3d4b36848dfce965a721a89bc2fe4d9be97bc3759322a6e0343a89db8a879"
+    },
+    {
+      "path": "media/manual-cover-real-graphics-ab95673993e8.png",
+      "bytes": 2200223,
+      "sha256": "ab95673993e85187fb89150fa0ace8eeff9fd5432bb5caa52c49d2164f3c70b7"
+    },
+    {
+      "path": "media/manual-cover-space-markets-a5a213b0b854.png",
+      "bytes": 839746,
+      "sha256": "a5a213b0b854b04b24f028dc5cd315ed57cfb4e435e9f291f260717ac8738e78"
+    },
+    {
+      "path": "media/manual-cover-unique-accessories-fb2a3fe56af0.png",
+      "bytes": 800258,
+      "sha256": "fb2a3fe56af0ee9f2af14d4fe5f058a778099ff433e09ff9ccd70ea730698269"
+    },
+    {
+      "path": "media/manual-cover-working-mama-a950a7a5ca51.png",
+      "bytes": 2040173,
+      "sha256": "a950a7a5ca51869238d3a7ce8f5feb5bc791562fe631a307cb44441bbb83d28b"
+    },
+    {
+      "path": "media/portfolio-refresh/athletics-arena/original-logo.png",
+      "bytes": 17675,
+      "sha256": "7bee3af91e5541229aeda4189251d479e0b413f1e4fb514d9c4b39d10df330f9"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/0027dd498b348a9c938f.png",
+      "bytes": 563,
+      "sha256": "8d346e197667c42a836d08acf2e6870930362be7bab171af05ee9fdb77be4699"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/301f735e77f54573bf21.png",
+      "bytes": 609,
+      "sha256": "9558331324fb55b16f3ec16c99f2b07655be2b3f61c693952ea0706183117623"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/4c6c876bfbaa47f4fd38.png",
+      "bytes": 442,
+      "sha256": "932f58532558cd549b3cfd436b8ff450935ec96ffa773883657f9faf6cf08e53"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/6e49db78ee6c4cb3e6d0.png",
+      "bytes": 106669,
+      "sha256": "97b336409fd6e64ac0cd7c2f2eaa68b8c6f13983c372a0c61e87e064713433c1"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/76ef7e6a52624f919c8c.png",
+      "bytes": 2741,
+      "sha256": "63b7f686dc43f4074e2c9bcc9afdc73e8ece9035f2d8c57974670b70cee484f8"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/9810de0eaf31362da195.png",
+      "bytes": 251643,
+      "sha256": "8d5865d148230459f3badcaec9e2484fbc7335e205f40a779738d838b5e04ac6"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/a042d9390ed7ce0aabde.png",
+      "bytes": 108053,
+      "sha256": "12622062da95ccfcde76202f1c564b1dec30f5e12be76c19170992ff159543b1"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/b0cda070fe414986f77d.png",
+      "bytes": 2756451,
+      "sha256": "eb766c7b6a1b07860e49d6432bc9d888222ba17d996fa4a7c0f86a18d8c9e617"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/b55102b51a5ca09de463.png",
+      "bytes": 489,
+      "sha256": "dea1ce62727637e5782e6a8f8838a89a0f13ec4db616c73ac2dde3301664538f"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/ba01b3d8f8c37834ed33.png",
+      "bytes": 624,
+      "sha256": "61c360c7bad3a016e85e482f6f60ac6228c3d7193351802dd9d6729c24769c9c"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/c654863a61834a427838.png",
+      "bytes": 410,
+      "sha256": "6cee7423adb70bd4658ba10aa24ac813b5aa18bb136a2b7187218d166f9424bf"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/c7c3f8fdb4e1bf6ba341.png",
+      "bytes": 1452,
+      "sha256": "1228cecfd67a9fb8057441bbc35ed45ac2b74f33f115acddefc0ee7344eb9330"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/e4d69b1b4a1d043cae9b.png",
+      "bytes": 501,
+      "sha256": "6de8cfaca9a4d561bdfa07a00c0d70f4183597bb1b8b7785ff56d0a7c2bcbd4c"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/comit-capital/assets/f9eea7cd49c51e47af52.png",
+      "bytes": 1817,
+      "sha256": "7506f11c71223495bb842773626b71d5babcfc1875d0933e742baaa9acb755a2"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/rcg-markets/assets/059641bc52b85e1b7b34.png",
+      "bytes": 5942406,
+      "sha256": "5656c6140b3a7d39c67a87c946f93d66d5324418ce20f2a0ca9521888be9df6e"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/rcg-markets/assets/12bdff6d141ac90c9348.png",
+      "bytes": 23294,
+      "sha256": "d5a050e1ce541f58bb957105fb93a1974896a496549cfec3562cf4f5f3f4dd31"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/rcg-markets/assets/1abb2b1737843cd6ed51.png",
+      "bytes": 670,
+      "sha256": "e1b44875995ffd10a7ee7e756a386354deb3652ce9a920c259d1b00b590f8673"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/rcg-markets/assets/288d0f903de86c7560ba.png",
+      "bytes": 4080746,
+      "sha256": "7b1491862a619be477327f36c76597a228eb93c25a22f2235b30738e55b6702f"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/rcg-markets/assets/2d63f123db5e4595700a.png",
+      "bytes": 955,
+      "sha256": "717ea3c04d18ae46ce88d2d26a57908cef23e24ef3a4327e0d831ea77aecfbaf"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/rcg-markets/assets/301f735e77f54573bf21.png",
+      "bytes": 609,
+      "sha256": "9558331324fb55b16f3ec16c99f2b07655be2b3f61c693952ea0706183117623"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/rcg-markets/assets/5685b37cd85b0e2da2ce.png",
+      "bytes": 787,
+      "sha256": "8c6deed505b13dea1b9bdfecd2598a6a316f2e9d29b5c1ccec2080454c7be360"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/rcg-markets/assets/5b46a723b3a763ae35da.png",
+      "bytes": 25674,
+      "sha256": "5dc5baecea8997a56c2af408b4e05027fe209ce36f8146f82860e09233332544"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/rcg-markets/assets/b55102b51a5ca09de463.png",
+      "bytes": 489,
+      "sha256": "dea1ce62727637e5782e6a8f8838a89a0f13ec4db616c73ac2dde3301664538f"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/rcg-markets/assets/c6a56086e945e4caf71a.png",
+      "bytes": 5631064,
+      "sha256": "c336af8c42a8578d1dc63d3a5bd5cbf1c14b9f0a048e609f7288adf6927f44c6"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/rcg-markets/assets/de738423df9a5dc3e3a6.png",
+      "bytes": 929,
+      "sha256": "102565b4e63935d80dabc39cd63b43c40a9444db4e78c4649355ebc50f6ec555"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/rcg-markets/assets/e4d69b1b4a1d043cae9b.png",
+      "bytes": 501,
+      "sha256": "6de8cfaca9a4d561bdfa07a00c0d70f4183597bb1b8b7785ff56d0a7c2bcbd4c"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/space-markets/assets/05b096a4611ed846e2f6.png",
+      "bytes": 10559535,
+      "sha256": "271e7bebba98f0f41d753f6e705a7ea92d5eead8f965c19397950ff3eed22e60"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/space-markets/assets/1abb2b1737843cd6ed51.png",
+      "bytes": 670,
+      "sha256": "e1b44875995ffd10a7ee7e756a386354deb3652ce9a920c259d1b00b590f8673"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/space-markets/assets/2d63f123db5e4595700a.png",
+      "bytes": 955,
+      "sha256": "717ea3c04d18ae46ce88d2d26a57908cef23e24ef3a4327e0d831ea77aecfbaf"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/space-markets/assets/301f735e77f54573bf21.png",
+      "bytes": 609,
+      "sha256": "9558331324fb55b16f3ec16c99f2b07655be2b3f61c693952ea0706183117623"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/space-markets/assets/4f493c909e0d79d90c2f.png",
+      "bytes": 76682,
+      "sha256": "73c6c26888631480cf225575c49d2e19307fc145b742d6faba6731e9ed53ded5"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/space-markets/assets/b55102b51a5ca09de463.png",
+      "bytes": 489,
+      "sha256": "dea1ce62727637e5782e6a8f8838a89a0f13ec4db616c73ac2dde3301664538f"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/space-markets/assets/d5ea0b482e15af494944.png",
+      "bytes": 3588375,
+      "sha256": "1e7c798e7e86c425e33026bd3a6598c717dbb3d65f769394aae59075c5e57933"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/space-markets/assets/de738423df9a5dc3e3a6.png",
+      "bytes": 929,
+      "sha256": "102565b4e63935d80dabc39cd63b43c40a9444db4e78c4649355ebc50f6ec555"
+    },
+    {
+      "path": "media/portfolio-refresh/emails/space-markets/assets/e4d69b1b4a1d043cae9b.png",
+      "bytes": 501,
+      "sha256": "6de8cfaca9a4d561bdfa07a00c0d70f4183597bb1b8b7785ff56d0a7c2bcbd4c"
+    },
+    {
+      "path": "media/premium-art-direction/athletics-arena/drawstring-kit-bag.webp",
+      "bytes": 508546,
+      "sha256": "a7e6b9626f2d1ee9b698233b12efcc452af32e5c9d4d86fd79895791c1844d3b"
+    },
+    {
+      "path": "media/premium-art-direction/athletics-arena/events/event-banner-web.webp",
+      "bytes": 1343520,
+      "sha256": "b428d62220a434753f045fda87c380357e490890a7bda59ca79e2ecf4a32c423"
+    },
+    {
+      "path": "media/premium-art-direction/athletics-arena/sport-bottle.webp",
+      "bytes": 70538,
+      "sha256": "8454a9dcf7ac7fa6ca1631ca84f009919e8226aea107d801966f31eb224bdefd"
+    },
+    {
+      "path": "media/premium-art-direction/athletics-arena/supplied/architectural-banners-5ef30addf07a.webp",
+      "bytes": 1531292,
+      "sha256": "a3a90ce700484de9294675856fbe87112f36c1bbfaac7a08471cb1e059bb06c2"
+    },
+    {
+      "path": "media/premium-art-direction/athletics-arena/supplied/gym-flyers-dd0c6d3fabc5.webp",
+      "bytes": 1411086,
+      "sha256": "f88c31515dea28d1418aada5371659e065b9ecd78055963d4a865c3136766f03"
+    },
+    {
+      "path": "media/premium-art-direction/athletics-arena/training-singlet.webp",
+      "bytes": 183706,
+      "sha256": "aa89b2c3edf6a29ba381c281bd1794b7d0d8e328e3c03924dc99ccf70f14baaa"
+    },
+    {
+      "path": "media/premium-art-direction/real-graphics/studio-business-card.webp",
+      "bytes": 1081900,
+      "sha256": "f61dfbcd6b27d39960fb4afdefc3ad969ad4b51a2ced95ea072db820c394e26c"
+    },
+    {
+      "path": "media/premium-art-direction/real-graphics/studio-signage.webp",
+      "bytes": 408384,
+      "sha256": "79bfc11904ea0e323e499d068ccc35a945b32472501a797476f878b8f7b848e3"
+    },
+    {
+      "path": "media/premium-art-direction/real-graphics/studio-stationery.webp",
+      "bytes": 79648,
+      "sha256": "c7ed4d649553d06912140d5278cda5592949155e290c2673bb6a100317067def"
+    },
+    {
+      "path": "media/premium-art-direction/ua-packaging-mobile.webp",
+      "bytes": 383584,
+      "sha256": "c827e96bedb65e7b87dd1fb1a9f6017d661e5047e8ed022d72232c118bfc2158"
+    },
+    {
+      "path": "media/premium-art-direction/ua-packaging-tag-mobile.webp",
+      "bytes": 230072,
+      "sha256": "36289b5557b687f137fd599c29bc6e3d8f7778029a1306272037ec06bc891532"
+    },
+    {
+      "path": "media/premium-art-direction/ua-packaging-tag.webp",
+      "bytes": 436640,
+      "sha256": "91aadc79ff18a901afe5ba625e185cde1fbcc4ba69a1dd0b86f1ff5c01749e44"
+    },
+    {
+      "path": "media/premium-art-direction/ua-packaging.webp",
+      "bytes": 598888,
+      "sha256": "38a2a323cf5ce07b269510864de2543419d8fb200fbec7af0cf22b3205d93677"
+    },
+    {
+      "path": "media/premium-art-direction/ua-shopping-bag-mobile.webp",
+      "bytes": 57906,
+      "sha256": "6a4ac0ea7b0c3c467cc259e11579c5e32cb42c8819de2f6a9428c9e6cd7cda8b"
+    },
+    {
+      "path": "media/premium-art-direction/ua-shopping-bag.webp",
+      "bytes": 79956,
+      "sha256": "19a8ffd2fc8e3d23cbe391e614f2e84de98d8d56b357d77cbe369fd0c6f3719d"
+    },
+    {
+      "path": "media/real-graphics-page-logo-5471cbf3209a.png",
+      "bytes": 121407,
+      "sha256": "695fc6608efb2865d0e47de482d701045d423b473de5fbb7fe94cf427b01f99f"
+    },
+    {
+      "path": "media/refresh-comit-capital-motion-1-poster.jpg",
+      "bytes": 43030,
+      "sha256": "0b88801d5af486292037324608b4af00fd2c06815b2c9307eef04dff2c67c04a"
+    },
+    {
+      "path": "media/refresh-comit-capital-motion-1.mp4",
+      "bytes": 10545131,
+      "sha256": "e7ce502767e3fa73a8ed0c172c26f5fdf796440d72cbe436f5b598ebaab5b2e2"
+    },
+    {
+      "path": "media/refresh-comit-capital-motion-2-poster.jpg",
+      "bytes": 46642,
+      "sha256": "2398703a0f9492411d07c28544a56465edb0bfc8f9cb3abac94683f98cc4af60"
+    },
+    {
+      "path": "media/refresh-comit-capital-motion-2.mp4",
+      "bytes": 4771697,
+      "sha256": "106cd1b7d6bffd8516d2016fdb0f6ec0f87d99472b777cbf5a578e8312f5193b"
+    },
+    {
+      "path": "media/refresh-comit-capital-social-1.webp",
+      "bytes": 165714,
+      "sha256": "0482f435abcb9558e97db1acde5ac234ade9fa4dcdea9cecc4c33046abdd1d72"
+    },
+    {
+      "path": "media/refresh-comit-capital-social-2.webp",
+      "bytes": 268710,
+      "sha256": "b65101f298fbc48a03406a7fac1930d5f54974c2905321d7477b256861e0811a"
+    },
+    {
+      "path": "media/refresh-comit-capital-social-3.webp",
+      "bytes": 115438,
+      "sha256": "0e934567080af7a9019d61fca9e2aa782556ab0ce2d58830a19c8f953a730ff2"
+    },
+    {
+      "path": "media/refresh-motion-animation-motion-1-poster.jpg",
+      "bytes": 73744,
+      "sha256": "3f15a7e84e2bb6a14fbb73f3e89a0084b1a6eaa25bb04d319223eaba45b36b18"
+    },
+    {
+      "path": "media/refresh-motion-animation-motion-1.mp4",
+      "bytes": 11613360,
+      "sha256": "a325b79706f62abbb7552286cad678af67d6c5be62f8831228612452c973a8e9"
+    },
+    {
+      "path": "media/refresh-motion-animation-motion-2-poster.jpg",
+      "bytes": 30045,
+      "sha256": "8fe7c5956e266efe9506329409697a75061d38791f7073c6e462cb96a3182ee9"
+    },
+    {
+      "path": "media/refresh-motion-animation-motion-2.mp4",
+      "bytes": 910445,
+      "sha256": "a0af441d3a90eb0deb77b18ad81da46d77c337dd2a5c511a2346a472e85f6b93"
+    },
+    {
+      "path": "media/refresh-rcg-markets-headers-1.webp",
+      "bytes": 110150,
+      "sha256": "eb021b5a4f6f036a1cd7a1df65f04bc5cca1926f372d1a66f0f6bf73bd4cead9"
+    },
+    {
+      "path": "media/refresh-rcg-markets-headers-2.webp",
+      "bytes": 167620,
+      "sha256": "eac5416c0128d7833e875f391cc83b54eec6502c956cd9ef0bc61ec3548f4665"
+    },
+    {
+      "path": "media/refresh-rcg-markets-headers-3.webp",
+      "bytes": 106236,
+      "sha256": "5322c6c3bd389f9ede5d0c8e21e9a8607edaebea5be77a1f37fa5ba326fe8997"
+    },
+    {
+      "path": "media/refresh-rcg-markets-motion-1-poster.jpg",
+      "bytes": 32159,
+      "sha256": "fadbb6985cb25adb7bb50306f501cf193e63f8d71b29fcaae16ff95779d6cd73"
+    },
+    {
+      "path": "media/refresh-rcg-markets-motion-1.mp4",
+      "bytes": 9568397,
+      "sha256": "1882b13a0fc5385c79146a69a0da4306e8ba83435c820df3ba1cb8afb9bbb009"
+    },
+    {
+      "path": "media/refresh-rcg-markets-motion-2-poster.jpg",
+      "bytes": 51811,
+      "sha256": "a403da09c01aecba370812f09df852061cdafc48071a1f14b7cda448d55e3a38"
+    },
+    {
+      "path": "media/refresh-rcg-markets-motion-2.mp4",
+      "bytes": 8007001,
+      "sha256": "98fdb023c03120cca68ba0edf5004a90d39b65f899a970fa1cd8f1b511f069b9"
+    },
+    {
+      "path": "media/refresh-rcg-markets-motion-3-poster.jpg",
+      "bytes": 33990,
+      "sha256": "b5b5194aa73f3ed0a6e6510900fcc949ea0102cd38aad0d2ea33410c168ec4b5"
+    },
+    {
+      "path": "media/refresh-rcg-markets-motion-3.mp4",
+      "bytes": 6688377,
+      "sha256": "793e39fdae1437cdde503db190aeadadbc532ba64748106007ae58a8b2e06627"
+    },
+    {
+      "path": "media/refresh-rcg-markets-social-1.webp",
+      "bytes": 183458,
+      "sha256": "15d3a0dc68335da367e027dd64bd69201bebb8123759383b35af5058d33613b5"
+    },
+    {
+      "path": "media/refresh-rcg-markets-social-2.webp",
+      "bytes": 176108,
+      "sha256": "0e6d697f3c20a9bd86ff35f8d1f94d686123dce34e7684f348e33c4ffeacec3b"
+    },
+    {
+      "path": "media/refresh-rcg-markets-social-3.webp",
+      "bytes": 90594,
+      "sha256": "f1b06a02c24aee4a78e99f73815ab00b6d6c07134cc26e8b622dd3f6f141a11b"
+    },
+    {
+      "path": "media/refresh-space-markets-headers-1.webp",
+      "bytes": 103918,
+      "sha256": "56d014df7027b1cc7cb4c911656ae8838a0cd96036be30e8acec79d597fcd082"
+    },
+    {
+      "path": "media/refresh-space-markets-headers-2.webp",
+      "bytes": 150308,
+      "sha256": "370e51100458af7eae0196bfe99c72caf2b94a882dc3858fdd550aebabde3414"
+    },
+    {
+      "path": "media/refresh-space-markets-headers-3.webp",
+      "bytes": 134816,
+      "sha256": "52ca70413fbe46a9378c04618d231c7559e3a01780081a8923e6dbfd75f5ed02"
+    },
+    {
+      "path": "media/refresh-space-markets-motion-1-poster.jpg",
+      "bytes": 70680,
+      "sha256": "f81f9707dda89af64792e38072965ad6533221c6c24cb9b7d216043172ab82e1"
+    },
+    {
+      "path": "media/refresh-space-markets-motion-1.mp4",
+      "bytes": 7515801,
+      "sha256": "a6ad735ae34248bd8710387b3049e8e17cc867aac24951b9f9d58f73826d94bd"
+    },
+    {
+      "path": "media/refresh-space-markets-motion-2-poster.jpg",
+      "bytes": 32846,
+      "sha256": "bc25dda30c801c30db0cc59966ed63b70791ac1aa8e128600e37a70f0e7fe444"
+    },
+    {
+      "path": "media/refresh-space-markets-motion-2.mp4",
+      "bytes": 5679480,
+      "sha256": "650381f0017a053db37c4989bf790d425ce6917e1c9150aa5b56defb19f09420"
+    },
+    {
+      "path": "media/refresh-space-markets-social-1.webp",
+      "bytes": 190066,
+      "sha256": "2d194db14f7e717072e0a1f61e7e08c21cd8dc02ab805ca7ef4e4fce175eba15"
+    },
+    {
+      "path": "media/refresh-space-markets-social-2.webp",
+      "bytes": 242270,
+      "sha256": "9c66b1cb6fd3454979ff342e0c31cd17f98679a505aa463e975da0e52baf8e16"
+    },
+    {
+      "path": "media/refresh-space-markets-social-3.webp",
+      "bytes": 207702,
+      "sha256": "b742ef32737329f2f3fc581fbe930c9ee8dca9114882616136cdaf309b359db9"
+    },
+    {
+      "path": "media/space-markets-fomc-astronaut-91a5303de216-poster.jpg",
+      "bytes": 480267,
+      "sha256": "ae1bdcb3358154844432e330ab82ebeeb518fd09f9db0421a32b4b1de1fbff8f"
+    },
+    {
+      "path": "media/space-markets-fomc-astronaut-91a5303de216.mp4",
+      "bytes": 21860690,
+      "sha256": "fd2c749beea0970b2e92e33ebe180a26b92c094e37cb4f5ac7ce4e989427805a"
+    },
+    {
+      "path": "media/unique-accessories-page-logo-1ffbbccb1c82.png",
+      "bytes": 91401,
+      "sha256": "1fefa7b2faeb909c9fc80b3ebdb3b2e82cfe06e748f982b032dbf127f1baa61e"
+    },
+    {
+      "path": "media/working-mama-studio-5ed20737b998.png",
+      "bytes": 7383274,
+      "sha256": "5ed20737b9984e9429e8bd5bbcf781bfa9fc60db93f02517bb24b7956b5b9ec9"
+    },
+    {
+      "path": "media/working-mama-supplied/feature-story-ea4bf9c9a94c.webp",
+      "bytes": 1380792,
+      "sha256": "00c7ed39af82eb602ce306d12296e37f79bc2f7bfdc7febd79a4e7d3e8217790"
+    },
+    {
+      "path": "media/working-mama-supplied/natural-beauty-9afeb1b21ba8.webp",
+      "bytes": 1361806,
+      "sha256": "24ffe7eec5312b67c248f298b67cd06c74102336a6d49edb5e5a34eb4ce9ec75"
+    },
+    {
+      "path": "media/working-mama-supplied/wellness-routines-31cb00c3c14d.webp",
+      "bytes": 1390994,
+      "sha256": "9103afc7b648ac392275d4fe9331ab6374a741ce59166f47ab90832941613f54"
+    },
+    {
+      "path": "work/comit-capital/index.html",
+      "bytes": 766,
+      "sha256": "b421849bc329d7a9c2149f36fe4a424138aad7460fe73e0cf381b4af7cf35545"
+    },
+    {
+      "path": "work/comit-flare/index.html",
+      "bytes": 766,
+      "sha256": "b421849bc329d7a9c2149f36fe4a424138aad7460fe73e0cf381b4af7cf35545"
+    },
+    {
+      "path": "work/rcg-markets/index.html",
+      "bytes": 766,
+      "sha256": "b421849bc329d7a9c2149f36fe4a424138aad7460fe73e0cf381b4af7cf35545"
+    },
+    {
+      "path": "work/space-markets/index.html",
+      "bytes": 766,
+      "sha256": "b421849bc329d7a9c2149f36fe4a424138aad7460fe73e0cf381b4af7cf35545"
+    }
+  ],
+  "referencedAssets": 115,
+  "bytes": 226249886,
+  "maxFileBytes": 32076810,
+  "originalsUnchanged": true
+}
