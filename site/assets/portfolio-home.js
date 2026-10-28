@@ -1,5 +1,9 @@
 // Editable homepage for the static GitHub Pages export. React and GSAP are
 // supplied by the existing app bundle; no additional framework/CDN is loaded.
+// The compiled hosting bundle passes GSAP to playIntro. Reuse that instance for
+// the homepage's role loop instead of loading a second animation library.
+let animationEngine = null;
+
 export function renderHome({content, route}, {React, projectHref, copy, Image}) {
   const h = React.createElement;
   const ref = React.useRef(null);
@@ -15,6 +19,49 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
     window.addEventListener('portfolio:show-work', showWork);
     return () => { if (frame !== null) cancelAnimationFrame(frame); window.removeEventListener('portfolio:show-work', showWork); };
   }, [route]);
+  React.useEffect(() => {
+    const word = ref.current?.querySelector('.portfolio-hero-role-word');
+    const hero = ref.current?.querySelector('.portfolio-hero');
+    if (!word || !hero) return;
+    const phrases = ['A DESIGNER', 'AN ANIMATOR', 'A SOFTWARE DEVELOPER'];
+    let current = 0;
+    let cycle = null;
+    let observer = null;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const startCycle = () => {
+      if (cycle || reducedMotion.matches || !animationEngine || !word.isConnected) return;
+      const gsap = animationEngine;
+      cycle = gsap.timeline({repeat:-1, repeatDelay:0.15});
+      cycle.to(word, {y:-16, opacity:0, duration:0.25, delay:2.1, ease:'power2.in'})
+        .call(() => {current=(current+1)%phrases.length; word.textContent=phrases[current];})
+        .fromTo(word, {y:16, opacity:0}, {y:0, opacity:1, duration:0.38, ease:'power3.out'});
+      const updateVisibility = () => {
+        if (!cycle) return;
+        if (document.hidden) cycle.pause();
+        else if (!observer) cycle.resume();
+      };
+      document.addEventListener('visibilitychange', updateVisibility);
+      cycle.eventCallback('onReverseComplete', () => document.removeEventListener('visibilitychange', updateVisibility));
+      if ('IntersectionObserver' in window) {
+        observer = new IntersectionObserver(entries => {
+          if (!cycle || document.hidden) return;
+          entries[0]?.isIntersecting ? cycle.resume() : cycle.pause();
+        }, {threshold:0.05});
+        observer.observe(hero);
+      }
+    };
+    if (document.documentElement.classList.contains('portfolio-intro-active')) {
+      window.addEventListener('portfolio:intro-complete', startCycle, {once:true});
+    } else {
+      startCycle();
+    }
+    return () => {
+      window.removeEventListener('portfolio:intro-complete', startCycle);
+      observer?.disconnect();
+      cycle?.kill();
+      // The loop is scoped to this home component and dies when it unmounts.
+    };
+  }, []);
   const featuredIds = ['comit-capital', 'motion-animation', 'unique-accessories'];
   const featured = featuredIds.map(id => content.projects.find(p => p.id === id)).filter(Boolean);
   const remaining = content.projects.filter(p => !featuredIds.includes(p.id));
@@ -30,8 +77,12 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
   };
   return h('div', {className:'layout-home portfolio-home-v2', ref},
     h('section', {className:'portfolio-hero', 'aria-labelledby':'portfolio-title'},
-      h('p', {className:'portfolio-kicker'}, content.profile.title),
-      h('h1', {id:'portfolio-title'}, 'DESIGN THAT', h('br'), 'MOVES.', h('br'), 'IDEAS THAT WORK.'),
+      h('div', {className:'portfolio-hero-centre'},
+        h('p', {className:'portfolio-hero-prelude'}, 'I AM'),
+        h('h1', {id:'portfolio-title', className:'portfolio-hero-name', 'data-hero-name':true},
+          h('span', null, 'ELTON'), h('span', null, 'YASINI')),
+        h('p', {className:'portfolio-hero-role', 'aria-label':'Designer, animator and software developer'},
+          h('span', {className:'portfolio-hero-role-word', 'aria-hidden':true}, 'A DESIGNER'))),
       h('div', {className:'portfolio-hero-bottom'},
         h('p', null, content.profile.intro),
         h('a', {href:'#/work', className:'portfolio-link'}, 'Explore my work'))),
@@ -53,25 +104,75 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
 }
 
 export function playIntro(gsap) {
+  animationEngine = gsap;
   const overlay = document.getElementById('portfolio-intro');
   if (!overlay || overlay.hidden) return;
-  let timeline;
-  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const activeClass = 'portfolio-intro-active';
+  const root = document.documentElement;
+  let timeline = null;
+  let observer = null;
+  let finished = false;
+  let fallback = null;
   const finish = () => {
+    if (finished) return;
+    finished = true;
+    observer?.disconnect();
+    clearTimeout(fallback);
+    clearTimeout(window.portfolioIntroTimeout);
     timeline?.kill();
     overlay.remove();
-    clearTimeout(window.portfolioIntroTimeout);
+    root.classList.remove(activeClass);
     document.removeEventListener('keydown', finish);
     document.removeEventListener('pointerdown', finish);
-    document.removeEventListener('focusin', finish);
     motion.removeEventListener('change', finish);
+    window.removeEventListener('hashchange', onRouteChange);
+    window.dispatchEvent(new Event('portfolio:intro-complete'));
+  };
+  const onRouteChange = () => {
+    if (/^#\\/(?:work\\/|project\\/)/.test(location.hash)) finish();
+  };
+  if (motion.matches) { finish(); return; }
+  const begin = () => {
+    const name = document.querySelector('.portfolio-home-v2 [data-hero-name]');
+    if (!name || !overlay.isConnected || timeline || finished) return false;
+    observer?.disconnect();
+    const floatingName = overlay.firstElementChild;
+    const floatingLetters = floatingName.querySelectorAll('span');
+    const label = document.querySelector('.portfolio-hero-prelude');
+    const role = document.querySelector('.portfolio-hero-role');
+    const bottom = document.querySelector('.portfolio-hero-bottom');
+    if (!floatingName || !label || !role || !bottom) {finish();return true;}
+    const start = floatingName.getBoundingClientRect();
+    const end = name.getBoundingClientRect();
+    if (!start.width || !end.width) {finish();return true;}
+    const scale = end.width/start.width;
+    const dx = end.left + end.width/2 - start.left - start.width/2;
+    const dy = end.top + end.height/2 - start.top - start.height/2;
+    gsap.set([label,role,bottom], {opacity:0, y:20});
+    gsap.set(name, {opacity:0});
+    timeline = gsap.timeline({onComplete:finish});
+    timeline.fromTo(floatingLetters, {yPercent:110, opacity:0},
+      {yPercent:0, opacity:1, duration:0.55, stagger:0.1, ease:'power3.out'})
+      .to({}, {duration:0.2})
+      .addLabel('handoff')
+      .to(overlay, {backgroundColor:'rgba(248,248,246,0)', duration:1.05, ease:'power2.inOut'}, 'handoff')
+      .to(floatingName, {x:dx, y:dy, scale, color:'#101010',
+        duration:1.05, ease:'power3.inOut', transformOrigin:'center center'}, 'handoff')
+      .to(label, {opacity:1, y:0, duration:0.48, ease:'power3.out'}, 'handoff+=0.43')
+      .to(role, {opacity:1, y:0, duration:0.48, ease:'power3.out'}, 'handoff+=0.59')
+      .to(bottom, {opacity:1, y:0, duration:0.52, ease:'power3.out'}, 'handoff+=0.75')
+      .set(name, {opacity:1}, 'handoff+=0.98')
+      .to(overlay, {opacity:0, duration:0.14}, 'handoff+=1.00');
+    return true;
   };
   document.addEventListener('keydown', finish, {once:true});
   document.addEventListener('pointerdown', finish, {once:true});
-  document.addEventListener('focusin', finish, {once:true});
   motion.addEventListener('change', finish);
-  if (motion.matches) { finish(); return; }
-  timeline = gsap.timeline({onComplete:finish});
-  timeline.fromTo(overlay.querySelectorAll('span'), {yPercent:110, opacity:0}, {yPercent:0, opacity:1, duration:0.6, stagger:0.12, ease:'power3.out'})
-    .to(overlay, {opacity:0, duration:0.4, ease:'power2.inOut'}, '+=0.25');
+  window.addEventListener('hashchange', onRouteChange);
+  fallback = window.setTimeout(finish, 5100);
+  if (!begin()) {
+    observer = new MutationObserver(() => begin());
+    observer.observe(document.getElementById('root') || document.body, {childList:true, subtree:true});
+  }
 }
