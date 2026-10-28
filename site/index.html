@@ -1,9 +1,26 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Portfolio of Elton Yasini, a multidisciplinary designer, animator and developer creating brand identities, motion graphics, digital campaigns and web experiences."><meta name="theme-color" content="#F8F8F6"><link rel="icon" href="data:,"><title>Elton Yasini | Designer, Animator &amp; Developer</title>  <script type="module" crossorigin src="/elton-portfolio/assets/app-refined-20261028.js"></script>
   <link rel="stylesheet" crossorigin href="/elton-portfolio/assets/index-CgjP9zoy.css">
-<link rel="stylesheet" href="/elton-portfolio/assets/portfolio-refinement.css?v=project-grid-20261028"></head><body><div id="portfolio-intro" aria-hidden="true"><div><span>Elton</span><span>Yasini</span></div></div>
+<link rel="stylesheet" href="/elton-portfolio/assets/portfolio-refinement.css?v=hero-name-handoff-20261028"></head><body><div id="portfolio-intro" aria-hidden="true"><div><span>Elton</span><span>Yasini</span></div></div>
 <script>
-(()=>{const el=document.getElementById('portfolio-intro');
-try{if(sessionStorage.getItem('portfolio-intro-seen')||matchMedia('(prefers-reduced-motion: reduce)').matches){el.hidden=true;}else{sessionStorage.setItem('portfolio-intro-seen','1');}}catch{}
-window.portfolioIntroTimeout=setTimeout(()=>el.remove(),2400);
+(()=>{
+  const el=document.getElementById('portfolio-intro');
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const projectRoute=/^#\/(?:work\/|project\/)/.test(location.hash) || /\/work\//.test(location.pathname);
+  const replay=new URLSearchParams(location.search).has('replayIntro');
+  let alreadySeen=false;
+  try {
+    alreadySeen=sessionStorage.getItem('portfolio-intro-seen-v2')==='1';
+  } catch {}
+  if (reduced || projectRoute || (alreadySeen && !replay)) {
+    el.hidden=true;
+    return;
+  }
+  document.documentElement.classList.add('portfolio-intro-active');
+  try {sessionStorage.setItem('portfolio-intro-seen-v2','1')} catch {}
+  window.portfolioIntroTimeout=setTimeout(()=>{
+    el.remove();
+    document.documentElement.classList.remove('portfolio-intro-active');
+    window.dispatchEvent(new Event('portfolio:intro-complete'));
+  },5500);
 })();
 </script><div id="root"></div><noscript>Please enable JavaScript to explore the selected work.</noscript></body></html>
