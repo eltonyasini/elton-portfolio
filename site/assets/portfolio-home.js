@@ -27,6 +27,8 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
     let current = 0;
     let cycle = null;
     let observer = null;
+    let visible = true;
+    let onVisibility = null;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const startCycle = () => {
       if (cycle || reducedMotion.matches || !animationEngine || !word.isConnected) return;
@@ -35,17 +37,15 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
       cycle.to(word, {y:-16, opacity:0, duration:0.25, delay:2.1, ease:'power2.in'})
         .call(() => {current=(current+1)%phrases.length; word.textContent=phrases[current];})
         .fromTo(word, {y:16, opacity:0}, {y:0, opacity:1, duration:0.38, ease:'power3.out'});
-      const updateVisibility = () => {
+      onVisibility = () => {
         if (!cycle) return;
-        if (document.hidden) cycle.pause();
-        else if (!observer) cycle.resume();
+        (!document.hidden && visible) ? cycle.resume() : cycle.pause();
       };
-      document.addEventListener('visibilitychange', updateVisibility);
-      cycle.eventCallback('onReverseComplete', () => document.removeEventListener('visibilitychange', updateVisibility));
+      document.addEventListener('visibilitychange', onVisibility);
       if ('IntersectionObserver' in window) {
         observer = new IntersectionObserver(entries => {
-          if (!cycle || document.hidden) return;
-          entries[0]?.isIntersecting ? cycle.resume() : cycle.pause();
+          visible = Boolean(entries[0]?.isIntersecting);
+          onVisibility?.();
         }, {threshold:0.05});
         observer.observe(hero);
       }
@@ -58,6 +58,7 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
     return () => {
       window.removeEventListener('portfolio:intro-complete', startCycle);
       observer?.disconnect();
+      if (onVisibility) document.removeEventListener('visibilitychange', onVisibility);
       cycle?.kill();
       // The loop is scoped to this home component and dies when it unmounts.
     };
