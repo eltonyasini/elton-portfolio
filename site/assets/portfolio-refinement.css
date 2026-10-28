@@ -20,9 +20,9 @@
 .portfolio-section-heading>span{font-size:11px;letter-spacing:.07em;color:#62625c}
 .portfolio-featured{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 28px}
 .portfolio-feature:first-child{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:48px;align-items:center}
-.portfolio-project-image{display:block;overflow:hidden;background:#e9e9e5;aspect-ratio:2.5;border-radius:3px}
-.portfolio-project-image img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .35s ease}
-.portfolio-project:has(a:hover) img{transform:scale(1.025)}
+.portfolio-home-v2 .portfolio-project-image{display:block;width:100%;height:auto;overflow:visible;background:none;border:0;border-radius:0;box-shadow:none;aspect-ratio:auto;contain:none;padding:0}
+.portfolio-home-v2 .portfolio-project-image img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain;object-position:center;transition:none}
+.portfolio-home-v2 .portfolio-project:has(a:hover) img{transform:none}
 .portfolio-project-copy{padding-top:22px}
 .portfolio-feature:first-child .portfolio-project-copy{padding-top:0}
 .portfolio-project h3{font-size:clamp(24px,2.5vw,38px);line-height:1.1;letter-spacing:-.04em;margin-top:10px}
@@ -86,8 +86,8 @@ body{overflow-x:clip}
 .portfolio-hero h1{font-size:clamp(54px,8.2vw,144px);line-height:.96;letter-spacing:-.068em;margin:0;max-width:14ch}
 .portfolio-hero-bottom{width:100%;align-items:flex-end}
 .portfolio-project{min-width:0}
-.portfolio-project-image{aspect-ratio:2400/1940;contain:layout paint;background:#efefeb}
-.portfolio-project-image img{object-fit:contain;object-position:center;width:100%;height:100%}
+
+
 .portfolio-feature:first-child{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}
 .portfolio-feature:first-child .portfolio-project-image{width:100%}
 .portfolio-project h3 a{min-width:0;gap:14px}
@@ -106,7 +106,6 @@ body{overflow-x:clip}
  .portfolio-hero-bottom{display:flex;flex-direction:column;align-items:flex-start;gap:22px}
  .portfolio-hero-bottom>p{font-size:15px;line-height:1.65}
  .portfolio-link{margin-top:0}
- .portfolio-project-image{aspect-ratio:2400/1940}
  .portfolio-project h3 a{align-items:flex-start}
  .portfolio-project h3 span{font-size:20px}
  .portfolio-project-copy{padding-top:16px}
@@ -122,21 +121,3 @@ body{overflow-x:clip}
  .portfolio-project-image img{transition:none!important;transform:none!important}
 }
 
-
-/* Mobile: project media should not expose a separate placeholder card. */
-@media(max-width:600px){
- .portfolio-home-v2 .portfolio-project-image{
-   aspect-ratio:auto;
-   height:auto;
-   background:transparent;
-   border-radius:0;
-   contain:none;
- }
- .portfolio-home-v2 .portfolio-project-image img{
-   display:block;
-   width:100%;
-   height:auto;
-   max-width:100%;
-   object-fit:contain;
- }
-}
