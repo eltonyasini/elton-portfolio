@@ -77,6 +77,13 @@ export function playIntro(gsap) {
     timeline?.kill();
     overlay.remove();
     root.classList.remove(activeClass);
+    // An interrupted intro must never leave the real hero invisible.
+    for (const element of document.querySelectorAll(
+      '.portfolio-hero-name, .portfolio-hero-prelude, .portfolio-hero-role, .portfolio-role-item, .portfolio-hero-bottom'
+    )) {
+      element.style.removeProperty('opacity');
+      element.style.removeProperty('transform');
+    }
     document.removeEventListener('keydown', finish);
     document.removeEventListener('pointerdown', finish);
     motion.removeEventListener('change', finish);
@@ -95,6 +102,7 @@ export function playIntro(gsap) {
     const floatingLetters = floatingName.querySelectorAll('span');
     const label = document.querySelector('.portfolio-hero-prelude');
     const role = document.querySelector('.portfolio-hero-role');
+    const roleItems = Array.from(role?.querySelectorAll('.portfolio-role-item') || []);
     const bottom = document.querySelector('.portfolio-hero-bottom');
     if (!floatingName || !label || !role || !bottom) {finish();return true;}
     const start = floatingName.getBoundingClientRect();
@@ -104,6 +112,9 @@ export function playIntro(gsap) {
     const dx = end.left + end.width/2 - start.left - start.width/2;
     const dy = end.top + end.height/2 - start.top - start.height/2;
     gsap.set([label,bottom], {opacity:0, y:20});
+    // Reveal the three disciplines once as the name lands — never rotate them.
+    gsap.set(role, {opacity:1});
+    gsap.set(roleItems, {opacity:0, y:20});
     gsap.set(name, {opacity:0});
     timeline = gsap.timeline({onComplete:finish});
     timeline.fromTo(floatingLetters, {yPercent:110, opacity:0},
@@ -114,6 +125,7 @@ export function playIntro(gsap) {
       .to(floatingName, {x:dx, y:dy, scale, color:'#101010',
         duration:1.05, ease:'power3.inOut', transformOrigin:'center center'}, 'handoff')
       .to(label, {opacity:1, y:0, duration:0.48, ease:'power3.out'}, 'handoff+=0.43')
+      .to(roleItems, {opacity:1, y:0, duration:0.48, stagger:0.11, ease:'power3.out'}, 'handoff+=0.58')
       .to(bottom, {opacity:1, y:0, duration:0.52, ease:'power3.out'}, 'handoff+=0.75')
       .set(name, {opacity:1}, 'handoff+=0.98')
       .to(overlay, {opacity:0, duration:0.14}, 'handoff+=1.00');
