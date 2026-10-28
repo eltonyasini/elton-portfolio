@@ -42,7 +42,7 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
         h('p', null, content.profile.intro),
         h('a', {href:'#/work', className:'portfolio-link'}, 'Explore my work'))),
     h('section', {id:'work', className:'portfolio-work', 'aria-labelledby':'portfolio-work-title'},
-      h('div', {className:'portfolio-section-heading'}, h('h2', {id:'portfolio-work-title'}, 'Selected work'), h('span', null, 'DESIGN / MOTION / CODE')),
+      h('div', {className:'portfolio-section-heading'}, h('h2', {id:'portfolio-work-title'}, 'Selected work')),
       h('div', {className:'portfolio-featured'}, featured.map((p, i) => project(p, i))),
       h('div', {className:'portfolio-section-heading portfolio-more-heading'}, h('h2', null, 'More to explore'), h('span', null, 'A FEW MORE PERSPECTIVES')),
       h('div', {className:'portfolio-grid'}, remaining.map((p, i) => project(p, i, true)))),
