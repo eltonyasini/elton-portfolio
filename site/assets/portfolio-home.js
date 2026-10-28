@@ -18,8 +18,6 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
   const featuredIds = ['comit-capital', 'motion-animation', 'unique-accessories'];
   const featured = featuredIds.map(id => content.projects.find(p => p.id === id)).filter(Boolean);
   const remaining = content.projects.filter(p => !featuredIds.includes(p.id));
-  const arrow = () => h('svg', {viewBox:'0 0 24 24', width:20, height:20, fill:'none', stroke:'currentColor', strokeWidth:1.7, strokeLinecap:'round', strokeLinejoin:'round', 'aria-hidden':true, className:'portfolio-arrow'}, h('path',{d:'M5 19 19 5M8 5h11v11'}));
-  const downArrow = () => h('svg',{viewBox:'0 0 24 24',width:20,height:20,fill:'none',stroke:'currentColor',strokeWidth:1.7,strokeLinecap:'round','aria-hidden':true},h('path',{d:'M12 4v16m-7-7 7 7 7-7'}));
   const project = (p, index, compact = false) => {
     const summary = copy.selected.find(item => item.id === p.id) || p;
     return h('article', {key:p.id, id:'work-'+p.id, className:'portfolio-project '+(compact ? 'portfolio-card' : 'portfolio-feature'), 'aria-labelledby':'home-title-'+p.id},
@@ -27,7 +25,7 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
         h(Image, {src:p.cover, alt:'', loading:index === 0 && !compact ? 'eager' : 'lazy', fetchPriority:index === 0 && !compact ? 'high' : 'low', decoding:'async', sizes:compact ? '(max-width:600px) 92vw, (max-width:1000px) 45vw, 30vw' : '(max-width:600px) 92vw, (max-width:1000px) 90vw, 65vw'})),
       h('div', {className:'portfolio-project-copy'},
         h('p', {className:'portfolio-kicker'}, summary.category),
-        h('h3', {id:'home-title-'+p.id}, h('a', {href:projectHref(p.id)}, p.title, arrow())),
+        h('h3', {id:'home-title-'+p.id}, h('a', {href:projectHref(p.id)}, p.title)),
         h('p', {className:'portfolio-description'}, summary.description || p.overview)));
   };
   return h('div', {className:'layout-home portfolio-home-v2', ref},
@@ -36,7 +34,7 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
       h('h1', {id:'portfolio-title'}, 'DESIGN THAT', h('br'), 'MOVES.', h('br'), 'IDEAS THAT WORK.'),
       h('div', {className:'portfolio-hero-bottom'},
         h('p', null, content.profile.intro),
-        h('a', {href:'#/work', className:'portfolio-link'}, 'Explore my work', downArrow()))),
+        h('a', {href:'#/work', className:'portfolio-link'}, 'Explore my work'))),
     h('section', {id:'work', className:'portfolio-work', 'aria-labelledby':'portfolio-work-title'},
       h('div', {className:'portfolio-section-heading'}, h('h2', {id:'portfolio-work-title'}, 'Selected work'), h('span', null, 'DESIGN / MOTION / CODE')),
       h('div', {className:'portfolio-featured'}, featured.map((p, i) => project(p, i))),
@@ -50,8 +48,8 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
       h('p', {className:'portfolio-kicker'}, 'Have something in mind?'),
       h('h2', {id:'portfolio-contact-title'}, "Let's make", h('br'), 'something matter.'),
       h('p', null, copy.contact.fields.Body),
-      h('a', {className:'portfolio-email', href:'mailto:'+content.profile.email}, content.profile.email, h('span', {'aria-hidden':true}, ' ↗')),
-      h('div', {className:'portfolio-contact-footer'}, h('span', null, 'BASED IN BULAWAYO · OPEN TO COLLABORATION'), h('a', {href:content.profile.github, target:'_blank', rel:'noopener noreferrer'}, 'GitHub', ' ', arrow()))));
+      h('a', {className:'portfolio-email', href:'mailto:'+content.profile.email}, content.profile.email),
+      h('div', {className:'portfolio-contact-footer'}, h('span', null, 'BASED IN BULAWAYO · OPEN TO COLLABORATION'), h('a', {href:content.profile.github, target:'_blank', rel:'noopener noreferrer'}, 'GitHub'))));
 }
 
 export function playIntro(gsap) {
