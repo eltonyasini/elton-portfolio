@@ -1,4 +1,4 @@
-import {renderHome,playIntro} from "./portfolio-home.js?v=name-handoff-20261028";
+import {renderHome,playIntro} from "./portfolio-home.js?v=static-roles-20261028";
 (function(){const p=document.createElement("link").relList;if(p&&p.supports&&p.supports("modulepreload"))return;for(const E of document.querySelectorAll('link[rel="modulepreload"]'))h(E);new MutationObserver(E=>{for(const b of E)if(b.type==="childList")for(const R of b.addedNodes)R.tagName==="LINK"&&R.rel==="modulepreload"&&h(R)}).observe(document,{childList:!0,subtree:!0});function v(E){const b={};return E.integrity&&(b.integrity=E.integrity),E.referrerPolicy&&(b.referrerPolicy=E.referrerPolicy),E.crossOrigin==="use-credentials"?b.credentials="include":E.crossOrigin==="anonymous"?b.credentials="omit":b.credentials="same-origin",b}function h(E){if(E.ep)return;E.ep=!0;const b=v(E);fetch(E.href,b)}})();var jd={exports:{}},ps={};/**
  * @license React
  * react-jsx-runtime.production.js
