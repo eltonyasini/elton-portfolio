@@ -294,7 +294,6 @@ body{overflow-x:clip}
   color:#202020;
   white-space:nowrap;
 }
-.portfolio-home-v2 .portfolio-hero-role-word {display:inline-block;will-change:transform,opacity}
 .portfolio-home-v2 .portfolio-hero-bottom {
   width:100%;
   display:flex;
@@ -346,5 +345,46 @@ html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
   html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
     opacity:1;
   }
-  .portfolio-home-v2 .portfolio-hero-role-word {will-change:auto}
+}
+
+
+/* Static creative disciplines: display together without cycling, sliding or fading. */
+.portfolio-home-v2 .portfolio-hero-role {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  column-gap:clamp(12px,2vw,28px);
+  row-gap:8px;
+  width:100%;
+  max-width:1100px;
+  margin-top:clamp(20px,3vh,36px);
+  font-size:clamp(16px,1.8vw,24px);
+  font-weight:500;
+  line-height:1.4;
+  letter-spacing:-.015em;
+  white-space:normal;
+  transition:none;
+}
+.portfolio-home-v2 .portfolio-role-item {
+  display:inline-block;
+  white-space:nowrap;
+  transform:none;
+  transition:none;
+}
+.portfolio-home-v2 .portfolio-role-item + .portfolio-role-item::before {
+  content:"/";
+  display:inline-block;
+  padding-right:clamp(12px,2vw,28px);
+  color:#969693;
+  font-weight:400;
+}
+@media(max-width:650px) {
+  .portfolio-home-v2 .portfolio-hero-role {
+    flex-direction:column;
+    gap:4px;
+    font-size:clamp(17px,4.8vw,22px);
+    margin-top:24px;
+  }
+  .portfolio-home-v2 .portfolio-role-item + .portfolio-role-item::before {display:none}
 }
