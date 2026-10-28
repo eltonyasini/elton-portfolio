@@ -121,3 +121,22 @@ body{overflow-x:clip}
 @media(prefers-reduced-motion:reduce){
  .portfolio-project-image img{transition:none!important;transform:none!important}
 }
+
+
+/* Mobile: project media should not expose a separate placeholder card. */
+@media(max-width:600px){
+ .portfolio-home-v2 .portfolio-project-image{
+   aspect-ratio:auto;
+   height:auto;
+   background:transparent;
+   border-radius:0;
+   contain:none;
+ }
+ .portfolio-home-v2 .portfolio-project-image img{
+   display:block;
+   width:100%;
+   height:auto;
+   max-width:100%;
+   object-fit:contain;
+ }
+}
