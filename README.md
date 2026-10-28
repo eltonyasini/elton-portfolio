@@ -4,6 +4,10 @@ This public repository contains only the prebuilt portfolio and its Pages deploy
 
 ## Deployment
 
+The October 28 UI refinement is documented in `REFINEMENTS.md`. Changes to
+`site/**` on `main` now deploy automatically; manual workflow dispatch remains
+available. The original export instructions below describe the initial release.
+
 Current mount: `/elton-portfolio/`. For a different repository name or a user-site/custom-domain root, re-export with the correct base before publishing. Upload the contents of this folder to the new hosting repository, select Settings → Pages → GitHub Actions, then manually run **Deploy public portfolio**. The workflow has only a manual trigger; it does not deploy merely because files were copied. It uploads **site/** only, without a Node install or backend. The workflow uses the versions in GitHub's official custom-workflow guide checked on October 28, 2026: checkout v6, configure-pages v5, upload-pages-artifact v4, deploy-pages v4. These are supported documented versions, not a claim they are the newest release. Official reference: https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages . The v4 uploader excludes dotfiles; .nojekyll is supplied for alternative branch/static hosting and is unnecessary for an Actions prebuilt upload.
 
 ## Local export (private maintained project)

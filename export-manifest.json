@@ -25,18 +25,28 @@
     },
     {
       "path": "404.html",
-      "bytes": 766,
-      "sha256": "b421849bc329d7a9c2149f36fe4a424138aad7460fe73e0cf381b4af7cf35545"
+      "bytes": 1292,
+      "sha256": "df2ec2bb17e3082fef0adb58731d7305b45108c3be0d4545c242be6a8a4ec5b5"
     },
     {
-      "path": "assets/app-Dao03Kfd.js",
-      "bytes": 483072,
-      "sha256": "8104ccd36d8614597c3fe1573d35994537e753a1ef04802550cbca24f64f7f98"
+      "path": "assets/app-refined-20261028.js",
+      "bytes": 478263,
+      "sha256": "96734773fa8d603f5a3483e7a481a0c096f94ca32666bd085b079398a579eb93"
     },
     {
       "path": "assets/index-CgjP9zoy.css",
       "bytes": 104792,
       "sha256": "f874dc30c26b94f6febb797844d6d18317dee729a8cb1098ed35033faed94bc8"
+    },
+    {
+      "path": "assets/portfolio-home.js",
+      "bytes": 5655,
+      "sha256": "15658ee9590697f6deefaa8c2f41c0c514d8fb1dc864d6d2896beba5abedef59"
+    },
+    {
+      "path": "assets/portfolio-refinement.css",
+      "bytes": 7329,
+      "sha256": "8431664f1d168f9c2c5e148c0a4f00e11086b459d3f3b249db0df1fb232f24bb"
     },
     {
       "path": "content/brands.json",
@@ -45,13 +55,13 @@
     },
     {
       "path": "content/portfolio.json",
-      "bytes": 19048,
-      "sha256": "96fcd3b9a9897a8e308124ddac54b3d18ea426947661c0e4ac70936e802941af"
+      "bytes": 19101,
+      "sha256": "76636417192f36e4ea44f344c15abde75c84af9a701edbcadbe482a6098be875"
     },
     {
       "path": "index.html",
-      "bytes": 766,
-      "sha256": "b421849bc329d7a9c2149f36fe4a424138aad7460fe73e0cf381b4af7cf35545"
+      "bytes": 1292,
+      "sha256": "df2ec2bb17e3082fef0adb58731d7305b45108c3be0d4545c242be6a8a4ec5b5"
     },
     {
       "path": "media/animation-collaborations/manenberg-0817953af012-web-poster.jpg",
@@ -630,23 +640,23 @@
     },
     {
       "path": "work/comit-capital/index.html",
-      "bytes": 766,
-      "sha256": "b421849bc329d7a9c2149f36fe4a424138aad7460fe73e0cf381b4af7cf35545"
+      "bytes": 1292,
+      "sha256": "df2ec2bb17e3082fef0adb58731d7305b45108c3be0d4545c242be6a8a4ec5b5"
     },
     {
       "path": "work/comit-flare/index.html",
-      "bytes": 766,
-      "sha256": "b421849bc329d7a9c2149f36fe4a424138aad7460fe73e0cf381b4af7cf35545"
+      "bytes": 1292,
+      "sha256": "df2ec2bb17e3082fef0adb58731d7305b45108c3be0d4545c242be6a8a4ec5b5"
     },
     {
       "path": "work/rcg-markets/index.html",
-      "bytes": 766,
-      "sha256": "b421849bc329d7a9c2149f36fe4a424138aad7460fe73e0cf381b4af7cf35545"
+      "bytes": 1292,
+      "sha256": "df2ec2bb17e3082fef0adb58731d7305b45108c3be0d4545c242be6a8a4ec5b5"
     },
     {
       "path": "work/space-markets/index.html",
-      "bytes": 766,
-      "sha256": "b421849bc329d7a9c2149f36fe4a424138aad7460fe73e0cf381b4af7cf35545"
+      "bytes": 1292,
+      "sha256": "df2ec2bb17e3082fef0adb58731d7305b45108c3be0d4545c242be6a8a4ec5b5"
     }
   ],
   "referencedAssets": 115,
