@@ -745,3 +745,25 @@ html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
     padding-right:clamp(3px,1vw,7px);
   }
 }
+
+/* Progressive homepage cover previews */
+.portfolio-home-v2 .portfolio-unified-grid .portfolio-cover-stage{
+  display:block;
+  width:100%;
+  height:100%;
+  aspect-ratio:2048/819;
+  overflow:hidden;
+  background:#e9e9e7;
+}
+.portfolio-home-v2 .portfolio-unified-grid .portfolio-cover-stage img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity .65s ease;
+}
+.portfolio-home-v2 .portfolio-unified-grid .portfolio-cover-stage.is-ready img{opacity:1}
+@media(prefers-reduced-motion:reduce){
+  .portfolio-home-v2 .portfolio-unified-grid .portfolio-cover-stage img{transition:none}
+}
