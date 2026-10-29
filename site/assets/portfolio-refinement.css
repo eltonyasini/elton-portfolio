@@ -576,3 +576,6 @@ html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
   .case-study[data-case="motion-animation"] .media-surface{aspect-ratio:16/10}
   .case-study[data-case="motion-animation"] .media-item figcaption{min-height:0}
 }
+
+/* Animation case study uses the video galleries directly, without a separate cover. */
+.case-study[data-case="motion-animation"] > .case-hero{display:none}
