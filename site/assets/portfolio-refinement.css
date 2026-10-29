@@ -704,3 +704,44 @@ html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
 .portfolio-hero-centre,.portfolio-hero-bottom{position:relative;z-index:1}
 @media(max-width:650px){.portfolio-swimmer{width:40px;height:40px;margin:-20px 0 0 -20px}}
 @media(prefers-reduced-motion:reduce){.portfolio-swimmer{will-change:auto}}
+
+/* Keep all three disciplines on one clean, compact line on every screen. */
+.portfolio-home-v2 .portfolio-hero-role{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:nowrap;
+  justify-content:center;
+  align-items:center;
+  gap:0;
+  max-width:100%;
+  white-space:nowrap;
+  font-size:clamp(11px,1.25vw,17px);
+  line-height:1.4;
+  letter-spacing:-.01em;
+}
+.portfolio-home-v2 .portfolio-role-item{
+  flex:0 0 auto;
+  white-space:nowrap;
+}
+.portfolio-home-v2 .portfolio-role-item + .portfolio-role-item::before{
+  display:inline-block;
+  content:"/";
+  padding-left:clamp(7px,1.35vw,20px);
+  padding-right:clamp(7px,1.35vw,20px);
+}
+@media(max-width:650px){
+  .portfolio-home-v2 .portfolio-hero-role{
+    flex-direction:row;
+    flex-wrap:nowrap;
+    gap:0;
+    width:100%;
+    font-size:clamp(7px,2.15vw,11px);
+    letter-spacing:-.025em;
+    margin-top:18px;
+  }
+  .portfolio-home-v2 .portfolio-role-item + .portfolio-role-item::before{
+    display:inline-block;
+    padding-left:clamp(3px,1vw,7px);
+    padding-right:clamp(3px,1vw,7px);
+  }
+}
