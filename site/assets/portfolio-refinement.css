@@ -659,3 +659,23 @@ html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
   max-height:100%;
   object-fit:contain;
 }
+
+/* Illustration subcategories retain the full artwork without video framing. */
+.case-study[data-case="motion-animation"] .layout-illustration .media-gallery{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:start;
+}
+.case-study[data-case="motion-animation"] .layout-illustration .media-surface{
+  display:block;aspect-ratio:auto;background:transparent;
+}
+.case-study[data-case="motion-animation"] .layout-illustration .zoom-image{
+  display:block;width:100%;padding:0;background:transparent;
+}
+.case-study[data-case="motion-animation"] .layout-illustration img{
+  display:block;width:100%;height:auto;max-height:none;object-fit:contain;
+}
+.case-study[data-case="motion-animation"] .layout-illustration figcaption{display:none}
+.case-study[data-case="motion-animation"] .case-section-nav{flex-wrap:wrap}
+@media(max-width:700px){
+ .case-study[data-case="motion-animation"] .layout-illustration .media-gallery{grid-template-columns:minmax(0,1fr)}
+}
