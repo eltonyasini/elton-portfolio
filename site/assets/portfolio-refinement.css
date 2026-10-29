@@ -697,3 +697,10 @@ html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
    white-space:nowrap;font-size:clamp(24px,3.2vw,46px);letter-spacing:-.035em;
  }
 }
+
+/* Six lightweight software swimmers live within the landing hero. */
+.portfolio-tool-tank{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.portfolio-swimmer{position:absolute;left:0;top:0;width:62px;height:62px;object-fit:contain;margin:-31px 0 0 -31px;opacity:0;pointer-events:none;user-select:none;will-change:transform}
+.portfolio-hero-centre,.portfolio-hero-bottom{position:relative;z-index:1}
+@media(max-width:650px){.portfolio-swimmer{width:40px;height:40px;margin:-20px 0 0 -20px}}
+@media(prefers-reduced-motion:reduce){.portfolio-swimmer{will-change:auto}}

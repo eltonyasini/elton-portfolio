@@ -1,8 +1,9 @@
 // Editable homepage for the static GitHub Pages export. React and GSAP are
 // supplied by the existing app bundle; no additional framework/CDN is loaded.
-export function renderHome({content, route}, {React, projectHref, copy, Image}) {
+export function renderHome({content, route}, {React, projectHref, copy, Image, gsap}) {
   const h = React.createElement;
   const ref = React.useRef(null);
+  React.useLayoutEffect(() => swimTools(ref.current, gsap), []);
   React.useLayoutEffect(() => {
     const scroll = () => {
       const [path, query = ''] = route.split('?');
@@ -23,6 +24,7 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
           sizes:'(max-width:650px) calc(100vw - 36px), (max-width:1600px) 45vw, 700px'})));
   return h('div', {className:'layout-home portfolio-home-v2', ref},
     h('section', {className:'portfolio-hero', 'aria-labelledby':'portfolio-title'},
+      h('div', {className:'portfolio-tool-tank', 'aria-hidden':true}, TOOL_ICONS.map(([id,label]) => h('img', {key:id,className:'portfolio-swimmer',src:'/elton-portfolio/media/tool-icons/'+id+'.webp',alt:'',width:500,height:500,draggable:false}))),
       h('div', {className:'portfolio-hero-centre'},
         h('p', {className:'portfolio-hero-prelude'}, 'I AM'),
         h('h1', {id:'portfolio-title', className:'portfolio-hero-name', 'data-hero-name':true},
@@ -131,4 +133,93 @@ export function playIntro(gsap) {
     observer = new MutationObserver(() => begin());
     observer.observe(document.getElementById('root') || document.body, {childList:true, subtree:true});
   }
+}
+
+const TOOL_ICONS = [
+ ['photoshop','Photoshop'],['after-effects','After Effects'],['illustrator','Illustrator'],
+ ['python','Python'],['figma','Figma'],['premiere','Premiere Pro']
+];
+
+// One GSAP ticker, six transform-only updates. No layout reads in the animation loop.
+function swimTools(root, gsap) {
+ const hero=root?.querySelector('.portfolio-hero');
+ if(!hero || !gsap) return;
+ const nodes=[...hero.querySelectorAll('.portfolio-swimmer')];
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ let width=0,height=0,rect,blocked=[],visible=true,started=false,ticking=false,elapsed=0;
+ const pointer={x:-10000,y:-10000,active:false};
+ const fish=nodes.map((node,i)=>({node,x:0,y:0,vx:0,vy:0,r:24,phase:i*1.047,
+  setX:gsap.quickSetter(node,'x','px'),setY:gsap.quickSetter(node,'y','px'),
+  setR:gsap.quickSetter(node,'rotation','deg')}));
+ function measure(){
+  rect=hero.getBoundingClientRect();width=hero.clientWidth;height=hero.clientHeight;
+  blocked=[...hero.querySelectorAll('.portfolio-hero-prelude,.portfolio-hero-name,.portfolio-hero-role,.portfolio-hero-bottom')].map(e=>{
+   const b=e.getBoundingClientRect();return {l:b.left-rect.left-18,r:b.right-rect.left+18,t:b.top-rect.top-14,b:b.bottom-rect.top+14};
+  });
+  const positions=[[.13,.18],[.5,.12],[.85,.22],[.17,.69],[.52,.74],[.84,.67]];
+  fish.forEach((f,i)=>{f.r=f.node.offsetWidth/2+6;f.x=width*positions[i][0];f.y=height*positions[i][1];constrain(f);paint(f)});
+ }
+ function constrain(f){
+  for(const b of blocked){
+   if(f.x>b.l-f.r&&f.x<b.r+f.r&&f.y>b.t-f.r&&f.y<b.b+f.r){
+    const options=[[Math.abs(f.x-(b.l-f.r)),0,b.l-f.r],[Math.abs(f.x-(b.r+f.r)),0,b.r+f.r],[Math.abs(f.y-(b.t-f.r)),1,b.t-f.r],[Math.abs(f.y-(b.b+f.r)),1,b.b+f.r]].sort((a,b)=>a[0]-b[0]);
+    const o=options[0];if(o[1]){f.y=o[2];f.vy*=-.6}else{f.x=o[2];f.vx*=-.6}
+   }
+  }
+  f.x=Math.max(f.r,Math.min(width-f.r,f.x));f.y=Math.max(f.r,Math.min(height-f.r,f.y));
+ }
+ function repel(f){
+  if(!pointer.active)return;
+  const dx=f.x-pointer.x,dy=f.y-pointer.y,d=Math.hypot(dx,dy),safe=100+f.r;
+  if(d<safe){
+   const nx=d>.01?dx/d:Math.cos(f.phase),ny=d>.01?dy/d:Math.sin(f.phase);
+   f.x=pointer.x+nx*safe;f.y=pointer.y+ny*safe;
+   f.vx+=nx*35;f.vy+=ny*35;constrain(f);
+   // If trapped between a boundary and the cursor, relocate to the safest legal spot.
+   if(Math.hypot(f.x-pointer.x,f.y-pointer.y)<safe){
+    let best=null;
+    for(let j=0;j<16;j++){
+     const a=j*Math.PI/8,c={...f,x:pointer.x+Math.cos(a)*(safe+8),y:pointer.y+Math.sin(a)*(safe+8)};
+     constrain(c);
+     if(Math.hypot(c.x-pointer.x,c.y-pointer.y)>=safe && (!best||Math.hypot(c.x-f.x,c.y-f.y)<best.dist))
+      best={x:c.x,y:c.y,dist:Math.hypot(c.x-f.x,c.y-f.y)};
+    }
+    if(best){f.x=best.x;f.y=best.y}
+   }
+  }
+ }
+ function paint(f){f.setX(f.x);f.setY(f.y);f.setR(Math.sin(elapsed*.7+f.phase)*9)}
+ function tick(_,delta){
+  const dt=Math.min(delta/1000,.04);elapsed+=dt;
+  fish.forEach(f=>{
+   f.vx+=(Math.cos(elapsed*.32+f.phase)*12-f.vx)*dt*1.2;
+   f.vy+=(Math.sin(elapsed*.41+f.phase)*9-f.vy)*dt*1.2;
+   f.x+=f.vx*dt;f.y+=f.vy*dt;constrain(f);repel(f);paint(f);
+  });
+ }
+ function sync(){
+  const run=started&&visible&&!document.hidden&&!reduced.matches;
+  if(run&&!ticking){gsap.ticker.add(tick);ticking=true}
+  if(!run&&ticking){gsap.ticker.remove(tick);ticking=false}
+ }
+ function start(){started=true;gsap.to(nodes,{opacity:.72,duration:reduced.matches?0:.8,stagger:.07});sync()}
+ function move(e){
+  if(e.pointerType==='touch'||reduced.matches)return;
+  pointer.x=e.clientX-rect.left;pointer.y=e.clientY-rect.top;pointer.active=true;
+  // Enforce the cursor exclusion immediately, even during fast mouse sweeps.
+  fish.forEach(f=>{repel(f);paint(f)});
+ }
+ function leave(){pointer.active=false}
+ function scroll(){rect=hero.getBoundingClientRect();leave()}
+ const ro=new ResizeObserver(measure);ro.observe(hero);
+ const io=new IntersectionObserver(([e])=>{visible=e.isIntersecting;sync()});io.observe(hero);
+ hero.addEventListener('pointermove',move,{passive:true});hero.addEventListener('pointerleave',leave);
+ window.addEventListener('scroll',scroll,{passive:true});
+ window.addEventListener('portfolio:intro-complete',start);
+ document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',sync);
+ measure();if(!document.documentElement.classList.contains('portfolio-intro-active'))start();
+ return ()=>{gsap.ticker.remove(tick);gsap.killTweensOf(nodes);ro.disconnect();io.disconnect();
+ hero.removeEventListener('pointermove',move);hero.removeEventListener('pointerleave',leave);
+ window.removeEventListener('scroll',scroll);window.removeEventListener('portfolio:intro-complete',start);
+ document.removeEventListener('visibilitychange',sync);reduced.removeEventListener('change',sync)};
 }
