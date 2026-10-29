@@ -1,3 +1,29 @@
+
+function ProgressiveCover({cover,title,index,React}) {
+  const h=React.createElement;
+  const holder=React.useRef(null);
+  const [active,setActive]=React.useState(false);
+  const [fallback,setFallback]=React.useState(false);
+  const [loaded,setLoaded]=React.useState(false);
+  React.useEffect(()=>{
+    const node=holder.current;
+    if(!node)return;
+    let timer=null;
+    const begin=()=>{timer=setTimeout(()=>setActive(true),180+index*145)};
+    if(!('IntersectionObserver' in window)){begin();return()=>clearTimeout(timer)}
+    const observer=new IntersectionObserver(entries=>{
+      if(entries.some(entry=>entry.isIntersecting)){observer.disconnect();begin()}
+    },{rootMargin:'850px 0px',threshold:0});
+    observer.observe(node);
+    return()=>{observer.disconnect();clearTimeout(timer)};
+  },[index]);
+  const webp=cover.replace(/\.png$/i,'-preview.webp');
+  return h('span',{ref:holder,className:'portfolio-cover-stage'+(loaded?' is-ready':'')},
+    active && h('img',{src:fallback?cover:webp,alt:title+' project cover',loading:'lazy',decoding:'async',fetchPriority:'low',
+      onLoad:()=>setLoaded(true),onError:()=>{if(!fallback)setFallback(true)},
+      width:2048,height:819}));
+}
+
 // Editable homepage for the static GitHub Pages export. React and GSAP are
 // supplied by the existing app bundle; no additional framework/CDN is loaded.
 export function renderHome({content, route}, {React, projectHref, copy, Image, gsap}) {
@@ -17,11 +43,10 @@ export function renderHome({content, route}, {React, projectHref, copy, Image, g
     return () => { if (frame !== null) cancelAnimationFrame(frame); window.removeEventListener('portfolio:show-work', showWork); };
   }, [route]);
   const projects = content.projects;
-  const project = (p) =>
+  const project = (p, index) =>
     h('article', {key:p.id, id:'work-'+p.id, className:'portfolio-project portfolio-grid-item'},
       h('a', {href:projectHref(p.id), className:'portfolio-project-image', 'aria-label':'View '+p.title+' project'},
-        h(Image, {src:p.cover, alt:p.title+' project cover', loading:'lazy', fetchPriority:'low', decoding:'async',
-          sizes:'(max-width:650px) calc(100vw - 36px), (max-width:1600px) 45vw, 700px'})));
+        h(ProgressiveCover, {cover:p.cover, title:p.title, index, React})));
   return h('div', {className:'layout-home portfolio-home-v2', ref},
     h('section', {className:'portfolio-hero', 'aria-labelledby':'portfolio-title'},
       h('div', {className:'portfolio-tool-tank', 'aria-hidden':true}, TOOL_ICONS.map(([id,label]) => h('img', {key:id,className:'portfolio-swimmer',src:'/elton-portfolio/media/tool-icons/'+id+'.webp',alt:'',width:500,height:500,draggable:false}))),
