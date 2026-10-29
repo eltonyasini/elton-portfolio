@@ -579,3 +579,46 @@ html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
 
 /* Animation case study uses the video galleries directly, without a separate cover. */
 .case-study[data-case="motion-animation"] > .case-hero{display:none}
+
+
+/* Motion page: centered editorial copy, captions and credits. */
+.case-study[data-case="motion-animation"] .case-header,
+.case-study[data-case="motion-animation"] .case-section-heading,
+.case-study[data-case="motion-animation"] .media-item figcaption,
+.case-study[data-case="motion-animation"] .case-credit-note {
+  text-align:center;
+}
+.case-study[data-case="motion-animation"] .case-header h1,
+.case-study[data-case="motion-animation"] .case-overview,
+.case-study[data-case="motion-animation"] .case-copy-headline,
+.case-study[data-case="motion-animation"] .case-hero-supporting,
+.case-study[data-case="motion-animation"] .case-section-heading>div>p {
+  margin-left:auto;
+  margin-right:auto;
+}
+.case-study[data-case="motion-animation"] .case-meta{
+  margin-left:auto;
+  margin-right:auto;
+}
+.case-study[data-case="motion-animation"] .case-section-nav{
+  justify-content:center;
+}
+.case-study[data-case="motion-animation"] .case-section-heading{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+}
+.case-study[data-case="motion-animation"] .case-section-heading>div{
+  width:100%;
+}
+.case-study[data-case="motion-animation"] .media-item figcaption{
+  align-items:center;
+}
+.case-study[data-case="motion-animation"] .media-item figcaption>span{
+  max-width:58ch;
+}
+.case-study[data-case="motion-animation"] .case-meta>div{
+  text-align:center;
+}
