@@ -646,3 +646,16 @@ html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
 .case-study[data-case="motion-animation"] .portfolio-video-play:hover,
 .case-study[data-case="motion-animation"] .portfolio-video-play:focus-visible{background:#fff;color:#141414}
 .case-study[data-case="motion-animation"] .media-surface.portfolio-video-playing .portfolio-video-play{display:none}
+
+/* Keep intrinsic video dimensions from expanding the grid track and clipping controls. */
+.case-study[data-case="motion-animation"] .media-surface video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  min-width:0;
+  min-height:0;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
