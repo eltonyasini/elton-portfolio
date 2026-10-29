@@ -679,3 +679,7 @@ html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
 @media(max-width:700px){
  .case-study[data-case="motion-animation"] .layout-illustration .media-gallery{grid-template-columns:minmax(0,1fr)}
 }
+
+/* Reserve image space before lazy loading so empty galleries can intersect the viewport. */
+.case-study[data-case="motion-animation"] .layout-illustration .zoom-image{aspect-ratio:1/1}
+.case-study[data-case="motion-animation"] .layout-illustration img{height:100%;object-fit:contain}
