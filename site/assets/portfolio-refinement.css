@@ -388,3 +388,58 @@ html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
   }
   .portfolio-home-v2 .portfolio-role-item + .portfolio-role-item::before {display:none}
 }
+
+
+/* Equal-width, image-only portfolio grid. No featured tile, card padding or metadata. */
+.portfolio-home-v2 .portfolio-work .portfolio-unified-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:clamp(14px,2vw,30px);
+  row-gap:clamp(16px,2.4vw,36px);
+  width:100%;
+}
+.portfolio-home-v2 .portfolio-unified-grid .portfolio-grid-item{
+  display:block;
+  grid-column:auto;
+  grid-row:auto;
+  min-width:0;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+.portfolio-home-v2 .portfolio-unified-grid .portfolio-project-image{
+  display:block;
+  width:100%;
+  margin:0;
+  padding:0;
+  aspect-ratio:5/2;
+  overflow:hidden;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  transform:none;
+}
+.portfolio-home-v2 .portfolio-unified-grid .portfolio-project-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:cover;
+  object-position:center;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  transform:none;
+  transition:filter .25s ease;
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+  .portfolio-home-v2 .portfolio-unified-grid .portfolio-project-image:hover img{filter:brightness(1.12)}
+}
+.portfolio-home-v2 .portfolio-work .portfolio-section-heading{padding-bottom:clamp(18px,2.5vw,34px)}
+@media(max-width:650px){
+  .portfolio-home-v2 .portfolio-work .portfolio-unified-grid{
+    grid-template-columns:minmax(0,1fr);
+    row-gap:18px;
+  }
+}
