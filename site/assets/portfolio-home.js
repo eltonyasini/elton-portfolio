@@ -15,19 +15,12 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
     window.addEventListener('portfolio:show-work', showWork);
     return () => { if (frame !== null) cancelAnimationFrame(frame); window.removeEventListener('portfolio:show-work', showWork); };
   }, [route]);
-  const featuredIds = ['comit-capital', 'motion-animation', 'unique-accessories'];
-  const featured = featuredIds.map(id => content.projects.find(p => p.id === id)).filter(Boolean);
-  const remaining = content.projects.filter(p => !featuredIds.includes(p.id));
-  const project = (p, index, compact = false) => {
-    const summary = copy.selected.find(item => item.id === p.id) || p;
-    return h('article', {key:p.id, id:'work-'+p.id, className:'portfolio-project '+(compact ? 'portfolio-card' : 'portfolio-feature'), 'aria-labelledby':'home-title-'+p.id},
-      h('a', {href:projectHref(p.id), className:'portfolio-project-image', tabIndex:-1, 'aria-hidden':true},
-        h(Image, {src:p.cover, alt:'', loading:'lazy', fetchPriority:'low', decoding:'async', sizes:compact ? '(max-width:600px) 92vw, (max-width:1000px) 45vw, 30vw' : '(max-width:600px) 92vw, (max-width:1000px) 90vw, 65vw'})),
-      h('div', {className:'portfolio-project-copy'},
-        h('p', {className:'portfolio-kicker'}, summary.category),
-        h('h3', {id:'home-title-'+p.id}, h('a', {href:projectHref(p.id)}, p.title)),
-        h('p', {className:'portfolio-description'}, summary.description || p.overview)));
-  };
+  const projects = content.projects;
+  const project = (p) =>
+    h('article', {key:p.id, id:'work-'+p.id, className:'portfolio-project portfolio-grid-item'},
+      h('a', {href:projectHref(p.id), className:'portfolio-project-image', 'aria-label':'View '+p.title+' project'},
+        h(Image, {src:p.cover, alt:p.title+' project cover', loading:'lazy', fetchPriority:'low', decoding:'async',
+          sizes:'(max-width:650px) calc(100vw - 36px), (max-width:1600px) 45vw, 700px'})));
   return h('div', {className:'layout-home portfolio-home-v2', ref},
     h('section', {className:'portfolio-hero', 'aria-labelledby':'portfolio-title'},
       h('div', {className:'portfolio-hero-centre'},
@@ -43,9 +36,7 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
         h('a', {href:'#/work', className:'portfolio-link'}, 'Explore my work'))),
     h('section', {id:'work', className:'portfolio-work', 'aria-labelledby':'portfolio-work-title'},
       h('div', {className:'portfolio-section-heading'}, h('h2', {id:'portfolio-work-title'}, 'Selected work')),
-      h('div', {className:'portfolio-featured'}, featured.map((p, i) => project(p, i))),
-      h('div', {className:'portfolio-section-heading portfolio-more-heading'}, h('h2', null, 'More to explore'), h('span', null, 'A FEW MORE PERSPECTIVES')),
-      h('div', {className:'portfolio-grid'}, remaining.map((p, i) => project(p, i, true)))),
+      h('div', {className:'portfolio-grid portfolio-unified-grid'}, projects.map(project))),
     h('section', {id:'about', className:'portfolio-about', 'aria-labelledby':'portfolio-about-title'},
       h('div', null, h('p', {className:'portfolio-kicker'}, 'The person behind the work'), h('h2', {id:'portfolio-about-title'}, 'Curious by nature. ', h('br'), 'Creative by practice.')),
       h('div', null, h('p', {className:'portfolio-bio'}, content.profile.bio.split('\n\n')[0]),
