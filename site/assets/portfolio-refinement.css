@@ -622,3 +622,27 @@ html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
 .case-study[data-case="motion-animation"] .case-meta>div{
   text-align:center;
 }
+
+/* Explicit video action when a poster covers the browser's native controls. */
+.case-study[data-case="motion-animation"] .media-surface{position:relative}
+.case-study[data-case="motion-animation"] .portfolio-video-play{
+  position:absolute;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  padding:14px 22px;
+  border:1px solid rgba(255,255,255,.6);
+  border-radius:100px;
+  background:rgba(18,18,21,.88);
+  color:#fff;
+  font:600 13px/1.2 Arial,Helvetica,sans-serif;
+  cursor:pointer;
+  box-shadow:0 4px 30px #0005;
+}
+.case-study[data-case="motion-animation"] .portfolio-video-play:hover,
+.case-study[data-case="motion-animation"] .portfolio-video-play:focus-visible{background:#fff;color:#141414}
+.case-study[data-case="motion-animation"] .media-surface.portfolio-video-playing .portfolio-video-play{display:none}
