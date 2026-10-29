@@ -148,7 +148,7 @@ function swimTools(root, gsap) {
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  let width=0,height=0,rect,blocked=[],visible=true,started=false,ticking=false,elapsed=0;
  const pointer={x:-10000,y:-10000,active:false};
- const fish=nodes.map((node,i)=>({node,x:0,y:0,vx:0,vy:0,r:24,phase:i*1.047,
+ const fish=nodes.map((node,i)=>({node,x:0,y:0,vx:0,vy:0,r:24,phase:i*2.399,speed:10+i*1.7,frequency:.19+i*.037,turn:i%2?1:-1,
   setX:gsap.quickSetter(node,'x','px'),setY:gsap.quickSetter(node,'y','px'),
   setR:gsap.quickSetter(node,'rotation','deg')}));
  function measure(){
@@ -168,33 +168,49 @@ function swimTools(root, gsap) {
   }
   f.x=Math.max(f.r,Math.min(width-f.r,f.x));f.y=Math.max(f.r,Math.min(height-f.r,f.y));
  }
+
+ // Cursor proximity changes acceleration, never position: movement retains inertia.
  function repel(f){
-  if(!pointer.active)return;
-  const dx=f.x-pointer.x,dy=f.y-pointer.y,d=Math.hypot(dx,dy),safe=100+f.r;
-  if(d<safe){
-   const nx=d>.01?dx/d:Math.cos(f.phase),ny=d>.01?dy/d:Math.sin(f.phase);
-   f.x=pointer.x+nx*safe;f.y=pointer.y+ny*safe;
-   f.vx+=nx*35;f.vy+=ny*35;constrain(f);
-   // If trapped between a boundary and the cursor, relocate to the safest legal spot.
-   if(Math.hypot(f.x-pointer.x,f.y-pointer.y)<safe){
-    let best=null;
-    for(let j=0;j<16;j++){
-     const a=j*Math.PI/8,c={...f,x:pointer.x+Math.cos(a)*(safe+8),y:pointer.y+Math.sin(a)*(safe+8)};
-     constrain(c);
-     if(Math.hypot(c.x-pointer.x,c.y-pointer.y)>=safe && (!best||Math.hypot(c.x-f.x,c.y-f.y)<best.dist))
-      best={x:c.x,y:c.y,dist:Math.hypot(c.x-f.x,c.y-f.y)};
-    }
-    if(best){f.x=best.x;f.y=best.y}
-   }
-  }
+  if(!pointer.active)return {x:0,y:0};
+  const dx=f.x-pointer.x,dy=f.y-pointer.y,d=Math.hypot(dx,dy),range=210;
+  if(d>=range)return {x:0,y:0};
+  const nx=d>.1?dx/d:Math.cos(f.phase),ny=d>.1?dy/d:Math.sin(f.phase);
+  const strength=820*Math.pow(1-d/range,2);
+  return {x:nx*strength-ny*strength*.26*f.turn,y:ny*strength+nx*strength*.26*f.turn};
  }
- function paint(f){f.setX(f.x);f.setY(f.y);f.setR(Math.sin(elapsed*.7+f.phase)*9)}
+ function paint(f){f.setX(f.x);f.setY(f.y);f.setR(Math.sin(elapsed*f.frequency+f.phase)*9)}
  function tick(_,delta){
-  const dt=Math.min(delta/1000,.04);elapsed+=dt;
-  fish.forEach(f=>{
-   f.vx+=(Math.cos(elapsed*.32+f.phase)*12-f.vx)*dt*1.2;
-   f.vy+=(Math.sin(elapsed*.41+f.phase)*9-f.vy)*dt*1.2;
-   f.x+=f.vx*dt;f.y+=f.vy*dt;constrain(f);repel(f);paint(f);
+  const dt=Math.min(delta/1000,.032);elapsed+=dt;
+  // Compute all steering from the same frame before integrating any positions.
+  const forces=fish.map(f=>{
+   const push=repel(f);
+   let ax=(Math.cos(elapsed*f.frequency+f.phase)*f.speed-f.vx)*1.15+push.x;
+   let ay=(Math.sin(elapsed*(f.frequency*.83)+f.phase*1.7)*f.speed*.75-f.vy)*1.15+push.y;
+   for(const other of fish){
+    if(other===f)continue;
+    const dx=f.x-other.x,dy=f.y-other.y,d=Math.hypot(dx,dy),gap=f.r+other.r+38;
+    if(d<gap){
+     const nx=d>.1?dx/d:Math.cos(f.phase),ny=d>.1?dy/d:Math.sin(f.phase);
+     const force=220*Math.pow(1-d/gap,2);
+     ax+=nx*force;ay+=ny*force;
+    }
+   }
+   // Soft steering before hard safety boundaries avoids sticking to text or walls.
+   for(const b of blocked){
+    const x=Math.max(b.l,Math.min(b.r,f.x)),y=Math.max(b.t,Math.min(b.b,f.y));
+    const dx=f.x-x,dy=f.y-y,d=Math.hypot(dx,dy),range=f.r+48;
+    if(d>0&&d<range){const force=260*Math.pow(1-d/range,2);ax+=dx/d*force;ay+=dy/d*force}
+   }
+   const edge=72;
+   ax+=Math.max(0,edge-f.x)*2.5-Math.max(0,f.x-(width-edge))*2.5;
+   ay+=Math.max(0,edge-f.y)*2.5-Math.max(0,f.y-(height-edge))*2.5;
+   return {x:ax,y:ay};
+  });
+  fish.forEach((f,i)=>{
+   f.vx+=forces[i].x*dt;f.vy+=forces[i].y*dt;
+   const speed=Math.hypot(f.vx,f.vy),cap=230;
+   if(speed>cap){f.vx*=cap/speed;f.vy*=cap/speed}
+   f.x+=f.vx*dt;f.y+=f.vy*dt;constrain(f);paint(f);
   });
  }
  function sync(){
@@ -206,8 +222,7 @@ function swimTools(root, gsap) {
  function move(e){
   if(e.pointerType==='touch'||reduced.matches)return;
   pointer.x=e.clientX-rect.left;pointer.y=e.clientY-rect.top;pointer.active=true;
-  // Enforce the cursor exclusion immediately, even during fast mouse sweeps.
-  fish.forEach(f=>{repel(f);paint(f)});
+
  }
  function leave(){pointer.active=false}
  function scroll(){rect=hero.getBoundingClientRect();leave()}
