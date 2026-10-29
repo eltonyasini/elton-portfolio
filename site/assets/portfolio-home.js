@@ -22,7 +22,7 @@ export function renderHome({content, route}, {React, projectHref, copy, Image}) 
     const summary = copy.selected.find(item => item.id === p.id) || p;
     return h('article', {key:p.id, id:'work-'+p.id, className:'portfolio-project '+(compact ? 'portfolio-card' : 'portfolio-feature'), 'aria-labelledby':'home-title-'+p.id},
       h('a', {href:projectHref(p.id), className:'portfolio-project-image', tabIndex:-1, 'aria-hidden':true},
-        h(Image, {src:p.cover, alt:'', loading:index === 0 && !compact ? 'eager' : 'lazy', fetchPriority:index === 0 && !compact ? 'high' : 'low', decoding:'async', sizes:compact ? '(max-width:600px) 92vw, (max-width:1000px) 45vw, 30vw' : '(max-width:600px) 92vw, (max-width:1000px) 90vw, 65vw'})),
+        h(Image, {src:p.cover, alt:'', loading:'lazy', fetchPriority:'low', decoding:'async', sizes:compact ? '(max-width:600px) 92vw, (max-width:1000px) 45vw, 30vw' : '(max-width:600px) 92vw, (max-width:1000px) 90vw, 65vw'})),
       h('div', {className:'portfolio-project-copy'},
         h('p', {className:'portfolio-kicker'}, summary.category),
         h('h3', {id:'home-title-'+p.id}, h('a', {href:projectHref(p.id)}, p.title)),
