@@ -683,3 +683,17 @@ html.portfolio-intro-active .portfolio-home-v2 .portfolio-hero-bottom {
 /* Reserve image space before lazy loading so empty galleries can intersect the viewport. */
 .case-study[data-case="motion-animation"] .layout-illustration .zoom-image{aspect-ratio:1/1}
 .case-study[data-case="motion-animation"] .layout-illustration img{height:100%;object-fit:contain}
+
+/* Simplified animation introduction and centered desktop section headings. */
+.case-study[data-case="motion-animation"] .case-header > .case-copy-headline,
+.case-study[data-case="motion-animation"] .case-header > h1 ~ .section-label{
+  display:none;
+}
+.case-study[data-case="motion-animation"] .case-section-heading h2{
+  width:100%;max-width:none;margin-inline:auto;text-align:center;
+}
+@media(min-width:701px){
+ .case-study[data-case="motion-animation"] .case-section-heading h2{
+   white-space:nowrap;font-size:clamp(24px,3.2vw,46px);letter-spacing:-.035em;
+ }
+}
